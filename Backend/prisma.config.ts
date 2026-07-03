@@ -9,6 +9,6 @@ export default defineConfig({
     path: "src/prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"] || 'postgresql://postgres:sennha@localhost:5432/clinicFullstack?schema=public',
+    url: process.env["DATABASE_URL"] || '',
   },
 });

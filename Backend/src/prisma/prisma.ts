@@ -2,7 +2,7 @@ import "dotenv/config";
 import { PrismaClient } from "./generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 
-const connectionString = 'postgresql://postgres:sennha@localhost:5432/clinicFullstack?schema=public'
+const connectionString = process.env.DATABASE_URL
 if (!connectionString) {
   throw new Error("DATABASE_URL não foi definida no arquivo .env");
 }

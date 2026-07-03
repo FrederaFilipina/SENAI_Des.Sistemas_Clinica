@@ -6,7 +6,7 @@ import { usuarioRoute } from './routes/usuarioRoute'
 import { exameRouter } from './routes/exameRoute'
 import { env } from './env'
 
-console.log("DATABASE_URL Aqui:", '')
+// console.log("DATABASE_URL Aqui:", process.env.DATABASE_URL)
 
 const app = express()
 app.use(express.json())

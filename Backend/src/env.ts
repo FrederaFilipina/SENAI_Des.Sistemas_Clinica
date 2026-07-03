@@ -11,8 +11,8 @@ function requiredEnv(key: string): string {
 }
 
 export const env = {
-  port:  '',
-  databaseUrl:  '',
-  chaveAcesso:  '',
-  chaveRefresh:  ''
+  port: requiredEnv('PORT'),
+  databaseUrl: requiredEnv('DATABASE_URL'),
+  chaveAcesso: requiredEnv('CHAVE_ACESSO'),
+  chaveRefresh: requiredEnv('CHAVE_REFRESH')
 }
