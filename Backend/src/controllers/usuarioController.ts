@@ -116,7 +116,7 @@ export class UsuarioController {
 
         try {
 
-            const { email } = req.params
+            const {email} = req.params
 
             const usuario = await this.service.buscarUsuarioEmail(email)
 
