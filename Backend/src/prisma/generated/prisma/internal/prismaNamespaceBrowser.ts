@@ -100,12 +100,14 @@ export type TokenScalarFieldEnum = (typeof TokenScalarFieldEnum)[keyof typeof To
 
 export const ExameScalarFieldEnum = {
   id: 'id',
-  tipo_exame: 'tipo_exame',
-  valor: 'valor',
-  descricao: 'descricao',
-  resultado: 'resultado',
+  nome: 'nome',
   data_exame: 'data_exame',
-  pacienteId: 'pacienteId'
+  horario: 'horario',
+  tipo_exame: 'tipo_exame',
+  laboratorio: 'laboratorio',
+  url_documento: 'url_documento',
+  resultado: 'resultado',
+  paciente_id: 'paciente_id'
 } as const
 
 export type ExameScalarFieldEnum = (typeof ExameScalarFieldEnum)[keyof typeof ExameScalarFieldEnum]
@@ -126,8 +128,10 @@ export const ConsultaScalarFieldEnum = {
   id: 'id',
   motivo: 'motivo',
   data_consulta: 'data_consulta',
-  observacoes: 'observacoes',
-  medico_responsavel_id: 'medico_responsavel_id',
+  horario: 'horario',
+  descricao: 'descricao',
+  medicamento: 'medicamento',
+  dosagem_precaucoes: 'dosagem_precaucoes',
   paciente_id: 'paciente_id'
 } as const
 
@@ -138,11 +142,20 @@ export const PacienteScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   cpf: 'cpf',
+  rg: 'rg',
+  sexo: 'sexo',
+  data_nascimento: 'data_nascimento',
+  estado_civil: 'estado_civil',
+  naturalidade: 'naturalidade',
   telefone: 'telefone',
   email: 'email',
-  data_nascimento: 'data_nascimento',
-  sexo: 'sexo',
-  responsavel: 'responsavel'
+  contato_emergencia: 'contato_emergencia',
+  alergias: 'alergias',
+  cuidados_especiais: 'cuidados_especiais',
+  convenio: 'convenio',
+  numero_convenio: 'numero_convenio',
+  validade_convenio: 'validade_convenio',
+  endereco: 'endereco'
 } as const
 
 export type PacienteScalarFieldEnum = (typeof PacienteScalarFieldEnum)[keyof typeof PacienteScalarFieldEnum]
@@ -154,6 +167,13 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -170,4 +190,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

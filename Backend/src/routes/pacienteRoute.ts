@@ -12,6 +12,7 @@ pacienteRouter.get('/pacientes/:id', async (req, res) => {
 })
 
 pacienteRouter.post("/pacientes", async (req, res) => {
+  console.log("Entrou na rota POST /pacientes")
   return pacienteController.criarPaciente(req, res)
 })
 

@@ -25,14 +25,14 @@ export class UsuarioController {
             })
         }
     }
-    
+
     async buscarUsuarioId(req: Request, res: Response) {
 
         try {
 
             const idUsuario = Number(req.params.id)
             const usuario = await this.service.buscarUsuarioId(idUsuario)
-            
+
             return res.status(201).json(usuario)
 
         } catch (error) {
@@ -47,12 +47,12 @@ export class UsuarioController {
     }
 
     async criarUsuario(req: Request, res: Response) {
-        
+
         try {
 
             const ddsUsuario = req.body as Usuario
             const usuarioCriado = await this.service.criarUsuario(ddsUsuario)
-            
+
             return res.status(201).json(usuarioCriado)
 
         } catch (error) {
@@ -67,29 +67,32 @@ export class UsuarioController {
     }
 
     async atualizarusuario(req: Request, res: Response) {
-        
+
         try {
 
             const idUsuario = Number(req.params.id)
-            const ddsAtualizados = req.body as Omit<Usuario, 'id'>
-            const usuarioAtualizdo = await this.service.atualizarUsuario(idUsuario, ddsAtualizados)
-            
-            return res.status(200).json(usuarioAtualizdo)
+
+            const ddsAtualizados = req.body as Partial<Usuario>
+
+            const usuarioAtualizado =
+                await this.service.atualizarUsuario(
+                    idUsuario,
+                    ddsAtualizados
+                )
+
+            return res.status(200).json(usuarioAtualizado)
 
         } catch (error) {
-
-            // console.log(error)
 
             return res.status(404).json({
                 error
             })
         }
-
     }
 
-    async deletarusuario(req: Request, res: Response){
+    async deletarusuario(req: Request, res: Response) {
 
-        try{
+        try {
 
             const idUsuario = Number(req.params.id)
             const usuario = await this.service.deletarUsuario(idUsuario)
@@ -106,6 +109,31 @@ export class UsuarioController {
             return res.status(404).json({
                 error
             })
+        }
+    }
+
+    async buscarUsuarioEmail(req: Request, res: Response) {
+
+        try {
+
+            const { email } = req.params
+
+            const usuario = await this.service.buscarUsuarioEmail(email)
+
+            if (!usuario) {
+                return res.status(404).json({
+                    mensagem: "Usuário não encontrado"
+                })
+            }
+
+            return res.status(200).json(usuario)
+
+        } catch (error) {
+
+            return res.status(404).json({
+                error
+            })
+
         }
     }
 

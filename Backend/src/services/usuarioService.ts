@@ -26,32 +26,52 @@ export class UsuarioService {
 
     async criarUsuario(ddsUsuario: Usuario) {
 
-        const hash = await createHash(ddsUsuario.senha)
+    const hash = await createHash(ddsUsuario.senha)
 
-        const usuarioCriado = await this.repository.criarUsuario({
-            nome: ddsUsuario.nome || "",
-            email: ddsUsuario.email || "",
-            senha: ddsUsuario.senha || "",
-            role: ddsUsuario.role || "USER"
-        })
+    const usuarioCriado = await this.repository.criarUsuario({
+        nome: ddsUsuario.nome || "",
+        email: ddsUsuario.email || "",
+        senha: hash,
+        role: ddsUsuario.role || "USER"
+    })
 
-        return usuarioCriado
+    return usuarioCriado
+}
+
+    async atualizarUsuario(
+    idUsuario: number,
+    atualizarDados: Partial<Usuario>
+){
+
+    if(atualizarDados.senha){
+
+        atualizarDados.senha = await createHash(
+            atualizarDados.senha
+        )
+
     }
 
-    async atualizarUsuario(idUsuario: number,
-        atualizarDados: Omit<Usuario, 'id'>){
-            
-            const ddsAtualizados = this.repository.atualizarUsuario(idUsuario, atualizarDados)
+    const ddsAtualizados = await this.repository.atualizarUsuario(
+        idUsuario,
+        atualizarDados
+    )
 
-            return ddsAtualizados
-    }
+    return ddsAtualizados
+}
 
-    async deletarUsuario (idUsuario: number) {
+    async deletarUsuario(idUsuario: number) {
 
         const usuario = await this.repository.deletarUsuario(idUsuario)
 
         return usuario
     }
+    
+    async buscarUsuarioEmail(email:string){
+
+    const usuario = await this.repository.buscarUsuarioEmail(email)
+
+    return usuario
+}
 
 }
 export const usuarioService = new UsuarioService(usuarioRepository)

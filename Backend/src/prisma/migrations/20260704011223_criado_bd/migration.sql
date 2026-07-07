@@ -56,8 +56,10 @@ CREATE TABLE "consulta" (
     "id" SERIAL NOT NULL,
     "motivo" TEXT NOT NULL,
     "data_consulta" TIMESTAMP(3) NOT NULL,
-    "observacoes" TEXT NOT NULL,
-    "medico_responsavel_id" INTEGER NOT NULL,
+    "horario" TEXT NOT NULL,
+    "descricao" TEXT NOT NULL,
+    "medicamento" TEXT NOT NULL,
+    "dosagem_precaucoes" TEXT NOT NULL,
     "paciente_id" INTEGER NOT NULL,
 
     CONSTRAINT "consulta_pkey" PRIMARY KEY ("id")
@@ -68,17 +70,29 @@ CREATE TABLE "paciente" (
     "id" SERIAL NOT NULL,
     "nome" TEXT NOT NULL,
     "cpf" TEXT NOT NULL,
+    "rg" TEXT,
+    "sexo" TEXT NOT NULL,
+    "data_nascimento" TIMESTAMP(3) NOT NULL,
+    "estado_civil" TEXT NOT NULL,
+    "naturalidade" TEXT NOT NULL,
     "telefone" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "data_nascimento" TIMESTAMP(3) NOT NULL,
-    "sexo" TEXT NOT NULL,
-    "responsavel" TEXT,
+    "contato_emergencia" TEXT,
+    "alergias" TEXT NOT NULL,
+    "cuidados_especiais" TEXT NOT NULL,
+    "convenio" TEXT NOT NULL,
+    "numero_convenio" TEXT NOT NULL,
+    "validade_convenio" TIMESTAMP(3) NOT NULL,
+    "endereco" JSONB NOT NULL,
 
     CONSTRAINT "paciente_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "usuario_email_key" ON "usuario"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "paciente_cpf_key" ON "paciente"("cpf");
 
 -- AddForeignKey
 ALTER TABLE "token" ADD CONSTRAINT "token_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "usuario"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

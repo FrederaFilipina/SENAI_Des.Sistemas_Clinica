@@ -10,7 +10,8 @@ export class ConsultaController {
         try {
             const pagina = req.query.pagina ? Number(req.query.pagina) : undefined
             const limite = req.query.limite ? Number(req.query.limite) : undefined
-            const consultas = await this.service.listarTdsConsultas(pagina, limite)
+            const pacienteId = req.query.pacienteId ? Number(req.query.pacienteId) : undefined;
+            const consultas = await this.service.listarTdsConsultas(pagina, limite, pacienteId)
 
             return res.status(200).json(consultas)
         } catch (error) {

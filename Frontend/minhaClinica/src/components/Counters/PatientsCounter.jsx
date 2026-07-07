@@ -8,7 +8,7 @@ const PatientsCounter = () => {
     useEffect(() => {
         const fetchPatients = async () => {
             try {
-                const response = await apiClient.get('/patients')
+                const response = await apiClient.get('/pacientes')
                 setPatientCounter(response.data.length)
             } catch (error) {
                 console.error("Erro ao obter dados do pacientes", error)

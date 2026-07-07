@@ -6,9 +6,17 @@ export class ExameService {
 
     constructor(private readonly repository: ExameRepository) { }
 
-    async listarTdsExames(pagina?: number, limite?: number) {
+    async listarTdsExames(
+        pagina?: number,
+        limite?: number,
+        pacienteId?: number
+    ) {
 
-        const exames = await this.repository.listarTdsExames(pagina, limite)
+        const exames = await this.repository.listarTdsExames(
+            pagina,
+            limite,
+            pacienteId
+        )
 
         return exames
     }
@@ -21,17 +29,16 @@ export class ExameService {
     }
 
     async criarExame(ddsExame: Exame) {
-
-        const exameCriado = await this.repository.criarExame({
+        return await this.repository.criarExame({
+            nome: ddsExame.nome,
+            data_exame: ddsExame.data_exame,
+            horario: ddsExame.horario,
             tipo_exame: ddsExame.tipo_exame,
-            valor: ddsExame.valor,
-            descricao: ddsExame.descricao,
-            data_exame: new Date(ddsExame.data_exame),
+            laboratorio: ddsExame.laboratorio,
+            url_documento: ddsExame.url_documento,
             resultado: ddsExame.resultado,
-            pacienteId: ddsExame.pacienteId
-        })
-
-        return exameCriado
+            paciente_id: ddsExame.paciente_id
+        });
     }
 
 

@@ -7,21 +7,24 @@ export class ExameController {
     constructor(private readonly service: ExameService) { }
 
     async listarTdsExames(req: Request, res: Response) {
-
         try {
 
-            const pagina = req.query.pagina ? Number(req.query.pagina) : undefined
-            const limite = req.query.limite ? Number(req.query.limite) : undefined
-            const exames = await this.service.listarTdsExames(pagina, limite)
+            const pagina = req.query.pagina ? Number(req.query.pagina) : undefined;
+            const limite = req.query.limite ? Number(req.query.limite) : undefined;
+            const pacienteId = req.query.pacienteId
+                ? Number(req.query.pacienteId)
+                : undefined;
 
-            return res.status(200).json(exames)
+            const exames = await this.service.listarTdsExames(
+                pagina,
+                limite,
+                pacienteId
+            );
+
+            return res.status(200).json(exames);
 
         } catch (error) {
-
-            // console.log(error)
-
-            return res.status(404).json({ error })
-
+            return res.status(404).json({ error });
         }
     }
 
@@ -45,6 +48,7 @@ export class ExameController {
     async criarExame(req: Request, res: Response) {
 
         try {
+            console.log(req.body);
 
             const ddsExame = req.body as Exame
             const exameCriado = await this.service.criarExame(ddsExame)

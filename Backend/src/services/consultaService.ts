@@ -5,8 +5,17 @@ export class ConsultaService {
 
     constructor(private readonly repository: ConsultaRepository) { }
 
-    async listarTdsConsultas(pagina?: number, limite?: number) {
-        const consultas = await this.repository.listarTdsConsultas(pagina, limite)
+    async listarTdsConsultas( 
+        pagina?: number, 
+        limite?: number, 
+        pacienteId?: number 
+    ) {    
+        const consultas = await this.repository.listarTdsConsultas(
+            pagina,
+            limite,
+            pacienteId
+        )
+
         return consultas
     }
 
@@ -17,11 +26,13 @@ export class ConsultaService {
 
     async criarConsulta(ddsConsulta: Consulta) {
         const consultaCriada = await this.repository.criarConsulta({
-            motivo: ddsConsulta.motivo,
-            data_consulta: new Date(ddsConsulta.data_consulta),
-            observacoes: ddsConsulta.observacoes,
-            medico_responsavel_id: ddsConsulta.medico_responsavel_id,
-            paciente_id: ddsConsulta.paciente_id
+            motivo: ddsConsulta.motivo || "",
+            data_consulta: new Date(ddsConsulta.data_consulta || new Date()),
+            horario: ddsConsulta.horario || "",
+            descricao: ddsConsulta.descricao || "",
+            medicamento: ddsConsulta.medicamento || "",
+            dosagem_precaucoes: ddsConsulta.dosagem_precaucoes || "",
+            paciente_id: ddsConsulta.paciente_id!,
         })
 
         return consultaCriada

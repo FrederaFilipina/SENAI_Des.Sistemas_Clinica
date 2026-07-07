@@ -17,11 +17,20 @@ export class PacienteService {
         return await this.repository.criarPaciente({
             nome: ddsPaciente.nome,
             cpf: ddsPaciente.cpf,
+            rg: ddsPaciente.rg,
+            sexo: ddsPaciente.sexo,
+            data_nascimento: new Date(ddsPaciente.data_nascimento),
+            estado_civil: ddsPaciente.estado_civil,
+            naturalidade: ddsPaciente.naturalidade,
             telefone: ddsPaciente.telefone,
             email: ddsPaciente.email,
-            data_nascimento: new Date(ddsPaciente.data_nascimento),
-            sexo: ddsPaciente.sexo,
-            responsavel: ddsPaciente.responsavel
+            contato_emergencia: ddsPaciente.contato_emergencia,
+            alergias: ddsPaciente.alergias,
+            cuidados_especiais: ddsPaciente.cuidados_especiais,
+            convenio: ddsPaciente.convenio,
+            numero_convenio: ddsPaciente.numero_convenio,
+            validade_convenio: new Date(ddsPaciente.validade_convenio),
+            endereco: ddsPaciente.endereco
         })
     }
 

@@ -28,13 +28,11 @@ export type AggregateConsulta = {
 
 export type ConsultaAvgAggregateOutputType = {
   id: number | null
-  medico_responsavel_id: number | null
   paciente_id: number | null
 }
 
 export type ConsultaSumAggregateOutputType = {
   id: number | null
-  medico_responsavel_id: number | null
   paciente_id: number | null
 }
 
@@ -42,8 +40,10 @@ export type ConsultaMinAggregateOutputType = {
   id: number | null
   motivo: string | null
   data_consulta: Date | null
-  observacoes: string | null
-  medico_responsavel_id: number | null
+  horario: string | null
+  descricao: string | null
+  medicamento: string | null
+  dosagem_precaucoes: string | null
   paciente_id: number | null
 }
 
@@ -51,8 +51,10 @@ export type ConsultaMaxAggregateOutputType = {
   id: number | null
   motivo: string | null
   data_consulta: Date | null
-  observacoes: string | null
-  medico_responsavel_id: number | null
+  horario: string | null
+  descricao: string | null
+  medicamento: string | null
+  dosagem_precaucoes: string | null
   paciente_id: number | null
 }
 
@@ -60,8 +62,10 @@ export type ConsultaCountAggregateOutputType = {
   id: number
   motivo: number
   data_consulta: number
-  observacoes: number
-  medico_responsavel_id: number
+  horario: number
+  descricao: number
+  medicamento: number
+  dosagem_precaucoes: number
   paciente_id: number
   _all: number
 }
@@ -69,13 +73,11 @@ export type ConsultaCountAggregateOutputType = {
 
 export type ConsultaAvgAggregateInputType = {
   id?: true
-  medico_responsavel_id?: true
   paciente_id?: true
 }
 
 export type ConsultaSumAggregateInputType = {
   id?: true
-  medico_responsavel_id?: true
   paciente_id?: true
 }
 
@@ -83,8 +85,10 @@ export type ConsultaMinAggregateInputType = {
   id?: true
   motivo?: true
   data_consulta?: true
-  observacoes?: true
-  medico_responsavel_id?: true
+  horario?: true
+  descricao?: true
+  medicamento?: true
+  dosagem_precaucoes?: true
   paciente_id?: true
 }
 
@@ -92,8 +96,10 @@ export type ConsultaMaxAggregateInputType = {
   id?: true
   motivo?: true
   data_consulta?: true
-  observacoes?: true
-  medico_responsavel_id?: true
+  horario?: true
+  descricao?: true
+  medicamento?: true
+  dosagem_precaucoes?: true
   paciente_id?: true
 }
 
@@ -101,8 +107,10 @@ export type ConsultaCountAggregateInputType = {
   id?: true
   motivo?: true
   data_consulta?: true
-  observacoes?: true
-  medico_responsavel_id?: true
+  horario?: true
+  descricao?: true
+  medicamento?: true
+  dosagem_precaucoes?: true
   paciente_id?: true
   _all?: true
 }
@@ -197,8 +205,10 @@ export type ConsultaGroupByOutputType = {
   id: number
   motivo: string
   data_consulta: Date
-  observacoes: string
-  medico_responsavel_id: number
+  horario: string
+  descricao: string
+  medicamento: string
+  dosagem_precaucoes: string
   paciente_id: number
   _count: ConsultaCountAggregateOutputType | null
   _avg: ConsultaAvgAggregateOutputType | null
@@ -229,8 +239,10 @@ export type ConsultaWhereInput = {
   id?: Prisma.IntFilter<"Consulta"> | number
   motivo?: Prisma.StringFilter<"Consulta"> | string
   data_consulta?: Prisma.DateTimeFilter<"Consulta"> | Date | string
-  observacoes?: Prisma.StringFilter<"Consulta"> | string
-  medico_responsavel_id?: Prisma.IntFilter<"Consulta"> | number
+  horario?: Prisma.StringFilter<"Consulta"> | string
+  descricao?: Prisma.StringFilter<"Consulta"> | string
+  medicamento?: Prisma.StringFilter<"Consulta"> | string
+  dosagem_precaucoes?: Prisma.StringFilter<"Consulta"> | string
   paciente_id?: Prisma.IntFilter<"Consulta"> | number
   paciente?: Prisma.XOR<Prisma.PacienteScalarRelationFilter, Prisma.PacienteWhereInput>
 }
@@ -239,8 +251,10 @@ export type ConsultaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   motivo?: Prisma.SortOrder
   data_consulta?: Prisma.SortOrder
-  observacoes?: Prisma.SortOrder
-  medico_responsavel_id?: Prisma.SortOrder
+  horario?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  medicamento?: Prisma.SortOrder
+  dosagem_precaucoes?: Prisma.SortOrder
   paciente_id?: Prisma.SortOrder
   paciente?: Prisma.PacienteOrderByWithRelationInput
 }
@@ -252,8 +266,10 @@ export type ConsultaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ConsultaWhereInput | Prisma.ConsultaWhereInput[]
   motivo?: Prisma.StringFilter<"Consulta"> | string
   data_consulta?: Prisma.DateTimeFilter<"Consulta"> | Date | string
-  observacoes?: Prisma.StringFilter<"Consulta"> | string
-  medico_responsavel_id?: Prisma.IntFilter<"Consulta"> | number
+  horario?: Prisma.StringFilter<"Consulta"> | string
+  descricao?: Prisma.StringFilter<"Consulta"> | string
+  medicamento?: Prisma.StringFilter<"Consulta"> | string
+  dosagem_precaucoes?: Prisma.StringFilter<"Consulta"> | string
   paciente_id?: Prisma.IntFilter<"Consulta"> | number
   paciente?: Prisma.XOR<Prisma.PacienteScalarRelationFilter, Prisma.PacienteWhereInput>
 }, "id">
@@ -262,8 +278,10 @@ export type ConsultaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   motivo?: Prisma.SortOrder
   data_consulta?: Prisma.SortOrder
-  observacoes?: Prisma.SortOrder
-  medico_responsavel_id?: Prisma.SortOrder
+  horario?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  medicamento?: Prisma.SortOrder
+  dosagem_precaucoes?: Prisma.SortOrder
   paciente_id?: Prisma.SortOrder
   _count?: Prisma.ConsultaCountOrderByAggregateInput
   _avg?: Prisma.ConsultaAvgOrderByAggregateInput
@@ -279,16 +297,20 @@ export type ConsultaScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Consulta"> | number
   motivo?: Prisma.StringWithAggregatesFilter<"Consulta"> | string
   data_consulta?: Prisma.DateTimeWithAggregatesFilter<"Consulta"> | Date | string
-  observacoes?: Prisma.StringWithAggregatesFilter<"Consulta"> | string
-  medico_responsavel_id?: Prisma.IntWithAggregatesFilter<"Consulta"> | number
+  horario?: Prisma.StringWithAggregatesFilter<"Consulta"> | string
+  descricao?: Prisma.StringWithAggregatesFilter<"Consulta"> | string
+  medicamento?: Prisma.StringWithAggregatesFilter<"Consulta"> | string
+  dosagem_precaucoes?: Prisma.StringWithAggregatesFilter<"Consulta"> | string
   paciente_id?: Prisma.IntWithAggregatesFilter<"Consulta"> | number
 }
 
 export type ConsultaCreateInput = {
   motivo: string
   data_consulta: Date | string
-  observacoes: string
-  medico_responsavel_id: number
+  horario: string
+  descricao: string
+  medicamento: string
+  dosagem_precaucoes: string
   paciente: Prisma.PacienteCreateNestedOneWithoutConsultaInput
 }
 
@@ -296,16 +318,20 @@ export type ConsultaUncheckedCreateInput = {
   id?: number
   motivo: string
   data_consulta: Date | string
-  observacoes: string
-  medico_responsavel_id: number
+  horario: string
+  descricao: string
+  medicamento: string
+  dosagem_precaucoes: string
   paciente_id: number
 }
 
 export type ConsultaUpdateInput = {
   motivo?: Prisma.StringFieldUpdateOperationsInput | string
   data_consulta?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  observacoes?: Prisma.StringFieldUpdateOperationsInput | string
-  medico_responsavel_id?: Prisma.IntFieldUpdateOperationsInput | number
+  horario?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  medicamento?: Prisma.StringFieldUpdateOperationsInput | string
+  dosagem_precaucoes?: Prisma.StringFieldUpdateOperationsInput | string
   paciente?: Prisma.PacienteUpdateOneRequiredWithoutConsultaNestedInput
 }
 
@@ -313,8 +339,10 @@ export type ConsultaUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   motivo?: Prisma.StringFieldUpdateOperationsInput | string
   data_consulta?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  observacoes?: Prisma.StringFieldUpdateOperationsInput | string
-  medico_responsavel_id?: Prisma.IntFieldUpdateOperationsInput | number
+  horario?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  medicamento?: Prisma.StringFieldUpdateOperationsInput | string
+  dosagem_precaucoes?: Prisma.StringFieldUpdateOperationsInput | string
   paciente_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -322,24 +350,30 @@ export type ConsultaCreateManyInput = {
   id?: number
   motivo: string
   data_consulta: Date | string
-  observacoes: string
-  medico_responsavel_id: number
+  horario: string
+  descricao: string
+  medicamento: string
+  dosagem_precaucoes: string
   paciente_id: number
 }
 
 export type ConsultaUpdateManyMutationInput = {
   motivo?: Prisma.StringFieldUpdateOperationsInput | string
   data_consulta?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  observacoes?: Prisma.StringFieldUpdateOperationsInput | string
-  medico_responsavel_id?: Prisma.IntFieldUpdateOperationsInput | number
+  horario?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  medicamento?: Prisma.StringFieldUpdateOperationsInput | string
+  dosagem_precaucoes?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConsultaUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   motivo?: Prisma.StringFieldUpdateOperationsInput | string
   data_consulta?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  observacoes?: Prisma.StringFieldUpdateOperationsInput | string
-  medico_responsavel_id?: Prisma.IntFieldUpdateOperationsInput | number
+  horario?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  medicamento?: Prisma.StringFieldUpdateOperationsInput | string
+  dosagem_precaucoes?: Prisma.StringFieldUpdateOperationsInput | string
   paciente_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -347,14 +381,15 @@ export type ConsultaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   motivo?: Prisma.SortOrder
   data_consulta?: Prisma.SortOrder
-  observacoes?: Prisma.SortOrder
-  medico_responsavel_id?: Prisma.SortOrder
+  horario?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  medicamento?: Prisma.SortOrder
+  dosagem_precaucoes?: Prisma.SortOrder
   paciente_id?: Prisma.SortOrder
 }
 
 export type ConsultaAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  medico_responsavel_id?: Prisma.SortOrder
   paciente_id?: Prisma.SortOrder
 }
 
@@ -362,8 +397,10 @@ export type ConsultaMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   motivo?: Prisma.SortOrder
   data_consulta?: Prisma.SortOrder
-  observacoes?: Prisma.SortOrder
-  medico_responsavel_id?: Prisma.SortOrder
+  horario?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  medicamento?: Prisma.SortOrder
+  dosagem_precaucoes?: Prisma.SortOrder
   paciente_id?: Prisma.SortOrder
 }
 
@@ -371,14 +408,15 @@ export type ConsultaMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   motivo?: Prisma.SortOrder
   data_consulta?: Prisma.SortOrder
-  observacoes?: Prisma.SortOrder
-  medico_responsavel_id?: Prisma.SortOrder
+  horario?: Prisma.SortOrder
+  descricao?: Prisma.SortOrder
+  medicamento?: Prisma.SortOrder
+  dosagem_precaucoes?: Prisma.SortOrder
   paciente_id?: Prisma.SortOrder
 }
 
 export type ConsultaSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  medico_responsavel_id?: Prisma.SortOrder
   paciente_id?: Prisma.SortOrder
 }
 
@@ -437,16 +475,20 @@ export type ConsultaUncheckedUpdateManyWithoutPacienteNestedInput = {
 export type ConsultaCreateWithoutPacienteInput = {
   motivo: string
   data_consulta: Date | string
-  observacoes: string
-  medico_responsavel_id: number
+  horario: string
+  descricao: string
+  medicamento: string
+  dosagem_precaucoes: string
 }
 
 export type ConsultaUncheckedCreateWithoutPacienteInput = {
   id?: number
   motivo: string
   data_consulta: Date | string
-  observacoes: string
-  medico_responsavel_id: number
+  horario: string
+  descricao: string
+  medicamento: string
+  dosagem_precaucoes: string
 }
 
 export type ConsultaCreateOrConnectWithoutPacienteInput = {
@@ -482,8 +524,10 @@ export type ConsultaScalarWhereInput = {
   id?: Prisma.IntFilter<"Consulta"> | number
   motivo?: Prisma.StringFilter<"Consulta"> | string
   data_consulta?: Prisma.DateTimeFilter<"Consulta"> | Date | string
-  observacoes?: Prisma.StringFilter<"Consulta"> | string
-  medico_responsavel_id?: Prisma.IntFilter<"Consulta"> | number
+  horario?: Prisma.StringFilter<"Consulta"> | string
+  descricao?: Prisma.StringFilter<"Consulta"> | string
+  medicamento?: Prisma.StringFilter<"Consulta"> | string
+  dosagem_precaucoes?: Prisma.StringFilter<"Consulta"> | string
   paciente_id?: Prisma.IntFilter<"Consulta"> | number
 }
 
@@ -491,31 +535,39 @@ export type ConsultaCreateManyPacienteInput = {
   id?: number
   motivo: string
   data_consulta: Date | string
-  observacoes: string
-  medico_responsavel_id: number
+  horario: string
+  descricao: string
+  medicamento: string
+  dosagem_precaucoes: string
 }
 
 export type ConsultaUpdateWithoutPacienteInput = {
   motivo?: Prisma.StringFieldUpdateOperationsInput | string
   data_consulta?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  observacoes?: Prisma.StringFieldUpdateOperationsInput | string
-  medico_responsavel_id?: Prisma.IntFieldUpdateOperationsInput | number
+  horario?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  medicamento?: Prisma.StringFieldUpdateOperationsInput | string
+  dosagem_precaucoes?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConsultaUncheckedUpdateWithoutPacienteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   motivo?: Prisma.StringFieldUpdateOperationsInput | string
   data_consulta?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  observacoes?: Prisma.StringFieldUpdateOperationsInput | string
-  medico_responsavel_id?: Prisma.IntFieldUpdateOperationsInput | number
+  horario?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  medicamento?: Prisma.StringFieldUpdateOperationsInput | string
+  dosagem_precaucoes?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConsultaUncheckedUpdateManyWithoutPacienteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   motivo?: Prisma.StringFieldUpdateOperationsInput | string
   data_consulta?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  observacoes?: Prisma.StringFieldUpdateOperationsInput | string
-  medico_responsavel_id?: Prisma.IntFieldUpdateOperationsInput | number
+  horario?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  medicamento?: Prisma.StringFieldUpdateOperationsInput | string
+  dosagem_precaucoes?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -524,8 +576,10 @@ export type ConsultaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   motivo?: boolean
   data_consulta?: boolean
-  observacoes?: boolean
-  medico_responsavel_id?: boolean
+  horario?: boolean
+  descricao?: boolean
+  medicamento?: boolean
+  dosagem_precaucoes?: boolean
   paciente_id?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["consulta"]>
@@ -534,8 +588,10 @@ export type ConsultaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   motivo?: boolean
   data_consulta?: boolean
-  observacoes?: boolean
-  medico_responsavel_id?: boolean
+  horario?: boolean
+  descricao?: boolean
+  medicamento?: boolean
+  dosagem_precaucoes?: boolean
   paciente_id?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["consulta"]>
@@ -544,8 +600,10 @@ export type ConsultaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   motivo?: boolean
   data_consulta?: boolean
-  observacoes?: boolean
-  medico_responsavel_id?: boolean
+  horario?: boolean
+  descricao?: boolean
+  medicamento?: boolean
+  dosagem_precaucoes?: boolean
   paciente_id?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["consulta"]>
@@ -554,12 +612,14 @@ export type ConsultaSelectScalar = {
   id?: boolean
   motivo?: boolean
   data_consulta?: boolean
-  observacoes?: boolean
-  medico_responsavel_id?: boolean
+  horario?: boolean
+  descricao?: boolean
+  medicamento?: boolean
+  dosagem_precaucoes?: boolean
   paciente_id?: boolean
 }
 
-export type ConsultaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "motivo" | "data_consulta" | "observacoes" | "medico_responsavel_id" | "paciente_id", ExtArgs["result"]["consulta"]>
+export type ConsultaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "motivo" | "data_consulta" | "horario" | "descricao" | "medicamento" | "dosagem_precaucoes" | "paciente_id", ExtArgs["result"]["consulta"]>
 export type ConsultaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }
@@ -579,8 +639,10 @@ export type $ConsultaPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: number
     motivo: string
     data_consulta: Date
-    observacoes: string
-    medico_responsavel_id: number
+    horario: string
+    descricao: string
+    medicamento: string
+    dosagem_precaucoes: string
     paciente_id: number
   }, ExtArgs["result"]["consulta"]>
   composites: {}
@@ -1009,8 +1071,10 @@ export interface ConsultaFieldRefs {
   readonly id: Prisma.FieldRef<"Consulta", 'Int'>
   readonly motivo: Prisma.FieldRef<"Consulta", 'String'>
   readonly data_consulta: Prisma.FieldRef<"Consulta", 'DateTime'>
-  readonly observacoes: Prisma.FieldRef<"Consulta", 'String'>
-  readonly medico_responsavel_id: Prisma.FieldRef<"Consulta", 'Int'>
+  readonly horario: Prisma.FieldRef<"Consulta", 'String'>
+  readonly descricao: Prisma.FieldRef<"Consulta", 'String'>
+  readonly medicamento: Prisma.FieldRef<"Consulta", 'String'>
+  readonly dosagem_precaucoes: Prisma.FieldRef<"Consulta", 'String'>
   readonly paciente_id: Prisma.FieldRef<"Consulta", 'Int'>
 }
     

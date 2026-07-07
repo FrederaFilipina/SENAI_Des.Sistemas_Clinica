@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       {path: '/consultas', element: <ConsultationForm /> },
       {path: '/exames', element: <ExamsForm />},
       { path: "/exames-list", element: <ExamsList /> },
-      {path: '/paciente/id:', element: <PatientDetails />}
+      {path: '/pacientes/:id', element: <PatientDetails />}
     ]
   }
   

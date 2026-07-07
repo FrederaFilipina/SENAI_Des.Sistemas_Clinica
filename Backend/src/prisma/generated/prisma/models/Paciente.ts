@@ -38,33 +38,58 @@ export type PacienteMinAggregateOutputType = {
   id: number | null
   nome: string | null
   cpf: string | null
+  rg: string | null
+  sexo: string | null
+  data_nascimento: Date | null
+  estado_civil: string | null
+  naturalidade: string | null
   telefone: string | null
   email: string | null
-  data_nascimento: Date | null
-  sexo: string | null
-  responsavel: string | null
+  contato_emergencia: string | null
+  alergias: string | null
+  cuidados_especiais: string | null
+  convenio: string | null
+  numero_convenio: string | null
+  validade_convenio: Date | null
 }
 
 export type PacienteMaxAggregateOutputType = {
   id: number | null
   nome: string | null
   cpf: string | null
+  rg: string | null
+  sexo: string | null
+  data_nascimento: Date | null
+  estado_civil: string | null
+  naturalidade: string | null
   telefone: string | null
   email: string | null
-  data_nascimento: Date | null
-  sexo: string | null
-  responsavel: string | null
+  contato_emergencia: string | null
+  alergias: string | null
+  cuidados_especiais: string | null
+  convenio: string | null
+  numero_convenio: string | null
+  validade_convenio: Date | null
 }
 
 export type PacienteCountAggregateOutputType = {
   id: number
   nome: number
   cpf: number
+  rg: number
+  sexo: number
+  data_nascimento: number
+  estado_civil: number
+  naturalidade: number
   telefone: number
   email: number
-  data_nascimento: number
-  sexo: number
-  responsavel: number
+  contato_emergencia: number
+  alergias: number
+  cuidados_especiais: number
+  convenio: number
+  numero_convenio: number
+  validade_convenio: number
+  endereco: number
   _all: number
 }
 
@@ -81,33 +106,58 @@ export type PacienteMinAggregateInputType = {
   id?: true
   nome?: true
   cpf?: true
+  rg?: true
+  sexo?: true
+  data_nascimento?: true
+  estado_civil?: true
+  naturalidade?: true
   telefone?: true
   email?: true
-  data_nascimento?: true
-  sexo?: true
-  responsavel?: true
+  contato_emergencia?: true
+  alergias?: true
+  cuidados_especiais?: true
+  convenio?: true
+  numero_convenio?: true
+  validade_convenio?: true
 }
 
 export type PacienteMaxAggregateInputType = {
   id?: true
   nome?: true
   cpf?: true
+  rg?: true
+  sexo?: true
+  data_nascimento?: true
+  estado_civil?: true
+  naturalidade?: true
   telefone?: true
   email?: true
-  data_nascimento?: true
-  sexo?: true
-  responsavel?: true
+  contato_emergencia?: true
+  alergias?: true
+  cuidados_especiais?: true
+  convenio?: true
+  numero_convenio?: true
+  validade_convenio?: true
 }
 
 export type PacienteCountAggregateInputType = {
   id?: true
   nome?: true
   cpf?: true
+  rg?: true
+  sexo?: true
+  data_nascimento?: true
+  estado_civil?: true
+  naturalidade?: true
   telefone?: true
   email?: true
-  data_nascimento?: true
-  sexo?: true
-  responsavel?: true
+  contato_emergencia?: true
+  alergias?: true
+  cuidados_especiais?: true
+  convenio?: true
+  numero_convenio?: true
+  validade_convenio?: true
+  endereco?: true
   _all?: true
 }
 
@@ -201,11 +251,20 @@ export type PacienteGroupByOutputType = {
   id: number
   nome: string
   cpf: string
+  rg: string | null
+  sexo: string
+  data_nascimento: Date
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date
-  sexo: string
-  responsavel: string | null
+  contato_emergencia: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date
+  endereco: runtime.JsonValue
   _count: PacienteCountAggregateOutputType | null
   _avg: PacienteAvgAggregateOutputType | null
   _sum: PacienteSumAggregateOutputType | null
@@ -235,11 +294,20 @@ export type PacienteWhereInput = {
   id?: Prisma.IntFilter<"Paciente"> | number
   nome?: Prisma.StringFilter<"Paciente"> | string
   cpf?: Prisma.StringFilter<"Paciente"> | string
+  rg?: Prisma.StringNullableFilter<"Paciente"> | string | null
+  sexo?: Prisma.StringFilter<"Paciente"> | string
+  data_nascimento?: Prisma.DateTimeFilter<"Paciente"> | Date | string
+  estado_civil?: Prisma.StringFilter<"Paciente"> | string
+  naturalidade?: Prisma.StringFilter<"Paciente"> | string
   telefone?: Prisma.StringFilter<"Paciente"> | string
   email?: Prisma.StringFilter<"Paciente"> | string
-  data_nascimento?: Prisma.DateTimeFilter<"Paciente"> | Date | string
-  sexo?: Prisma.StringFilter<"Paciente"> | string
-  responsavel?: Prisma.StringNullableFilter<"Paciente"> | string | null
+  contato_emergencia?: Prisma.StringNullableFilter<"Paciente"> | string | null
+  alergias?: Prisma.StringFilter<"Paciente"> | string
+  cuidados_especiais?: Prisma.StringFilter<"Paciente"> | string
+  convenio?: Prisma.StringFilter<"Paciente"> | string
+  numero_convenio?: Prisma.StringFilter<"Paciente"> | string
+  validade_convenio?: Prisma.DateTimeFilter<"Paciente"> | Date | string
+  endereco?: Prisma.JsonFilter<"Paciente">
   Prontuario?: Prisma.ProntuarioListRelationFilter
   Consulta?: Prisma.ConsultaListRelationFilter
   Exame?: Prisma.ExameListRelationFilter
@@ -249,11 +317,20 @@ export type PacienteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  rg?: Prisma.SortOrderInput | Prisma.SortOrder
+  sexo?: Prisma.SortOrder
+  data_nascimento?: Prisma.SortOrder
+  estado_civil?: Prisma.SortOrder
+  naturalidade?: Prisma.SortOrder
   telefone?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  data_nascimento?: Prisma.SortOrder
-  sexo?: Prisma.SortOrder
-  responsavel?: Prisma.SortOrderInput | Prisma.SortOrder
+  contato_emergencia?: Prisma.SortOrderInput | Prisma.SortOrder
+  alergias?: Prisma.SortOrder
+  cuidados_especiais?: Prisma.SortOrder
+  convenio?: Prisma.SortOrder
+  numero_convenio?: Prisma.SortOrder
+  validade_convenio?: Prisma.SortOrder
+  endereco?: Prisma.SortOrder
   Prontuario?: Prisma.ProntuarioOrderByRelationAggregateInput
   Consulta?: Prisma.ConsultaOrderByRelationAggregateInput
   Exame?: Prisma.ExameOrderByRelationAggregateInput
@@ -261,30 +338,48 @@ export type PacienteOrderByWithRelationInput = {
 
 export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  cpf?: string
   AND?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
   OR?: Prisma.PacienteWhereInput[]
   NOT?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
   nome?: Prisma.StringFilter<"Paciente"> | string
-  cpf?: Prisma.StringFilter<"Paciente"> | string
+  rg?: Prisma.StringNullableFilter<"Paciente"> | string | null
+  sexo?: Prisma.StringFilter<"Paciente"> | string
+  data_nascimento?: Prisma.DateTimeFilter<"Paciente"> | Date | string
+  estado_civil?: Prisma.StringFilter<"Paciente"> | string
+  naturalidade?: Prisma.StringFilter<"Paciente"> | string
   telefone?: Prisma.StringFilter<"Paciente"> | string
   email?: Prisma.StringFilter<"Paciente"> | string
-  data_nascimento?: Prisma.DateTimeFilter<"Paciente"> | Date | string
-  sexo?: Prisma.StringFilter<"Paciente"> | string
-  responsavel?: Prisma.StringNullableFilter<"Paciente"> | string | null
+  contato_emergencia?: Prisma.StringNullableFilter<"Paciente"> | string | null
+  alergias?: Prisma.StringFilter<"Paciente"> | string
+  cuidados_especiais?: Prisma.StringFilter<"Paciente"> | string
+  convenio?: Prisma.StringFilter<"Paciente"> | string
+  numero_convenio?: Prisma.StringFilter<"Paciente"> | string
+  validade_convenio?: Prisma.DateTimeFilter<"Paciente"> | Date | string
+  endereco?: Prisma.JsonFilter<"Paciente">
   Prontuario?: Prisma.ProntuarioListRelationFilter
   Consulta?: Prisma.ConsultaListRelationFilter
   Exame?: Prisma.ExameListRelationFilter
-}, "id">
+}, "id" | "cpf">
 
 export type PacienteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  rg?: Prisma.SortOrderInput | Prisma.SortOrder
+  sexo?: Prisma.SortOrder
+  data_nascimento?: Prisma.SortOrder
+  estado_civil?: Prisma.SortOrder
+  naturalidade?: Prisma.SortOrder
   telefone?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  data_nascimento?: Prisma.SortOrder
-  sexo?: Prisma.SortOrder
-  responsavel?: Prisma.SortOrderInput | Prisma.SortOrder
+  contato_emergencia?: Prisma.SortOrderInput | Prisma.SortOrder
+  alergias?: Prisma.SortOrder
+  cuidados_especiais?: Prisma.SortOrder
+  convenio?: Prisma.SortOrder
+  numero_convenio?: Prisma.SortOrder
+  validade_convenio?: Prisma.SortOrder
+  endereco?: Prisma.SortOrder
   _count?: Prisma.PacienteCountOrderByAggregateInput
   _avg?: Prisma.PacienteAvgOrderByAggregateInput
   _max?: Prisma.PacienteMaxOrderByAggregateInput
@@ -299,21 +394,39 @@ export type PacienteScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Paciente"> | number
   nome?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   cpf?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  rg?: Prisma.StringNullableWithAggregatesFilter<"Paciente"> | string | null
+  sexo?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  data_nascimento?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
+  estado_civil?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  naturalidade?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   telefone?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   email?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
-  data_nascimento?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
-  sexo?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
-  responsavel?: Prisma.StringNullableWithAggregatesFilter<"Paciente"> | string | null
+  contato_emergencia?: Prisma.StringNullableWithAggregatesFilter<"Paciente"> | string | null
+  alergias?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  cuidados_especiais?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  convenio?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  numero_convenio?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  validade_convenio?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
+  endereco?: Prisma.JsonWithAggregatesFilter<"Paciente">
 }
 
 export type PacienteCreateInput = {
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioCreateNestedManyWithoutPacienteInput
   Consulta?: Prisma.ConsultaCreateNestedManyWithoutPacienteInput
   Exame?: Prisma.ExameCreateNestedManyWithoutPacienteInput
@@ -323,11 +436,20 @@ export type PacienteUncheckedCreateInput = {
   id?: number
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUncheckedCreateNestedManyWithoutPacienteInput
   Consulta?: Prisma.ConsultaUncheckedCreateNestedManyWithoutPacienteInput
   Exame?: Prisma.ExameUncheckedCreateNestedManyWithoutPacienteInput
@@ -336,11 +458,20 @@ export type PacienteUncheckedCreateInput = {
 export type PacienteUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUpdateManyWithoutPacienteNestedInput
   Consulta?: Prisma.ConsultaUpdateManyWithoutPacienteNestedInput
   Exame?: Prisma.ExameUpdateManyWithoutPacienteNestedInput
@@ -350,11 +481,20 @@ export type PacienteUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUncheckedUpdateManyWithoutPacienteNestedInput
   Consulta?: Prisma.ConsultaUncheckedUpdateManyWithoutPacienteNestedInput
   Exame?: Prisma.ExameUncheckedUpdateManyWithoutPacienteNestedInput
@@ -364,37 +504,59 @@ export type PacienteCreateManyInput = {
   id?: number
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type PacienteUpdateManyMutationInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type PacienteUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type PacienteNullableScalarRelationFilter = {
-  is?: Prisma.PacienteWhereInput | null
-  isNot?: Prisma.PacienteWhereInput | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type PacienteScalarRelationFilter = {
@@ -406,11 +568,20 @@ export type PacienteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  rg?: Prisma.SortOrder
+  sexo?: Prisma.SortOrder
+  data_nascimento?: Prisma.SortOrder
+  estado_civil?: Prisma.SortOrder
+  naturalidade?: Prisma.SortOrder
   telefone?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  data_nascimento?: Prisma.SortOrder
-  sexo?: Prisma.SortOrder
-  responsavel?: Prisma.SortOrder
+  contato_emergencia?: Prisma.SortOrder
+  alergias?: Prisma.SortOrder
+  cuidados_especiais?: Prisma.SortOrder
+  convenio?: Prisma.SortOrder
+  numero_convenio?: Prisma.SortOrder
+  validade_convenio?: Prisma.SortOrder
+  endereco?: Prisma.SortOrder
 }
 
 export type PacienteAvgOrderByAggregateInput = {
@@ -421,22 +592,38 @@ export type PacienteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  rg?: Prisma.SortOrder
+  sexo?: Prisma.SortOrder
+  data_nascimento?: Prisma.SortOrder
+  estado_civil?: Prisma.SortOrder
+  naturalidade?: Prisma.SortOrder
   telefone?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  data_nascimento?: Prisma.SortOrder
-  sexo?: Prisma.SortOrder
-  responsavel?: Prisma.SortOrder
+  contato_emergencia?: Prisma.SortOrder
+  alergias?: Prisma.SortOrder
+  cuidados_especiais?: Prisma.SortOrder
+  convenio?: Prisma.SortOrder
+  numero_convenio?: Prisma.SortOrder
+  validade_convenio?: Prisma.SortOrder
 }
 
 export type PacienteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  rg?: Prisma.SortOrder
+  sexo?: Prisma.SortOrder
+  data_nascimento?: Prisma.SortOrder
+  estado_civil?: Prisma.SortOrder
+  naturalidade?: Prisma.SortOrder
   telefone?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  data_nascimento?: Prisma.SortOrder
-  sexo?: Prisma.SortOrder
-  responsavel?: Prisma.SortOrder
+  contato_emergencia?: Prisma.SortOrder
+  alergias?: Prisma.SortOrder
+  cuidados_especiais?: Prisma.SortOrder
+  convenio?: Prisma.SortOrder
+  numero_convenio?: Prisma.SortOrder
+  validade_convenio?: Prisma.SortOrder
 }
 
 export type PacienteSumOrderByAggregateInput = {
@@ -449,12 +636,10 @@ export type PacienteCreateNestedOneWithoutExameInput = {
   connect?: Prisma.PacienteWhereUniqueInput
 }
 
-export type PacienteUpdateOneWithoutExameNestedInput = {
+export type PacienteUpdateOneRequiredWithoutExameNestedInput = {
   create?: Prisma.XOR<Prisma.PacienteCreateWithoutExameInput, Prisma.PacienteUncheckedCreateWithoutExameInput>
   connectOrCreate?: Prisma.PacienteCreateOrConnectWithoutExameInput
   upsert?: Prisma.PacienteUpsertWithoutExameInput
-  disconnect?: Prisma.PacienteWhereInput | boolean
-  delete?: Prisma.PacienteWhereInput | boolean
   connect?: Prisma.PacienteWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.PacienteUpdateToOneWithWhereWithoutExameInput, Prisma.PacienteUpdateWithoutExameInput>, Prisma.PacienteUncheckedUpdateWithoutExameInput>
 }
@@ -490,11 +675,20 @@ export type PacienteUpdateOneRequiredWithoutConsultaNestedInput = {
 export type PacienteCreateWithoutExameInput = {
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioCreateNestedManyWithoutPacienteInput
   Consulta?: Prisma.ConsultaCreateNestedManyWithoutPacienteInput
 }
@@ -503,11 +697,20 @@ export type PacienteUncheckedCreateWithoutExameInput = {
   id?: number
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUncheckedCreateNestedManyWithoutPacienteInput
   Consulta?: Prisma.ConsultaUncheckedCreateNestedManyWithoutPacienteInput
 }
@@ -531,11 +734,20 @@ export type PacienteUpdateToOneWithWhereWithoutExameInput = {
 export type PacienteUpdateWithoutExameInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUpdateManyWithoutPacienteNestedInput
   Consulta?: Prisma.ConsultaUpdateManyWithoutPacienteNestedInput
 }
@@ -544,11 +756,20 @@ export type PacienteUncheckedUpdateWithoutExameInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUncheckedUpdateManyWithoutPacienteNestedInput
   Consulta?: Prisma.ConsultaUncheckedUpdateManyWithoutPacienteNestedInput
 }
@@ -556,11 +777,20 @@ export type PacienteUncheckedUpdateWithoutExameInput = {
 export type PacienteCreateWithoutProntuarioInput = {
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Consulta?: Prisma.ConsultaCreateNestedManyWithoutPacienteInput
   Exame?: Prisma.ExameCreateNestedManyWithoutPacienteInput
 }
@@ -569,11 +799,20 @@ export type PacienteUncheckedCreateWithoutProntuarioInput = {
   id?: number
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Consulta?: Prisma.ConsultaUncheckedCreateNestedManyWithoutPacienteInput
   Exame?: Prisma.ExameUncheckedCreateNestedManyWithoutPacienteInput
 }
@@ -597,11 +836,20 @@ export type PacienteUpdateToOneWithWhereWithoutProntuarioInput = {
 export type PacienteUpdateWithoutProntuarioInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Consulta?: Prisma.ConsultaUpdateManyWithoutPacienteNestedInput
   Exame?: Prisma.ExameUpdateManyWithoutPacienteNestedInput
 }
@@ -610,11 +858,20 @@ export type PacienteUncheckedUpdateWithoutProntuarioInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Consulta?: Prisma.ConsultaUncheckedUpdateManyWithoutPacienteNestedInput
   Exame?: Prisma.ExameUncheckedUpdateManyWithoutPacienteNestedInput
 }
@@ -622,11 +879,20 @@ export type PacienteUncheckedUpdateWithoutProntuarioInput = {
 export type PacienteCreateWithoutConsultaInput = {
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioCreateNestedManyWithoutPacienteInput
   Exame?: Prisma.ExameCreateNestedManyWithoutPacienteInput
 }
@@ -635,11 +901,20 @@ export type PacienteUncheckedCreateWithoutConsultaInput = {
   id?: number
   nome: string
   cpf: string
+  rg?: string | null
+  sexo: string
+  data_nascimento: Date | string
+  estado_civil: string
+  naturalidade: string
   telefone: string
   email: string
-  data_nascimento: Date | string
-  sexo: string
-  responsavel?: string | null
+  contato_emergencia?: string | null
+  alergias: string
+  cuidados_especiais: string
+  convenio: string
+  numero_convenio: string
+  validade_convenio: Date | string
+  endereco: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUncheckedCreateNestedManyWithoutPacienteInput
   Exame?: Prisma.ExameUncheckedCreateNestedManyWithoutPacienteInput
 }
@@ -663,11 +938,20 @@ export type PacienteUpdateToOneWithWhereWithoutConsultaInput = {
 export type PacienteUpdateWithoutConsultaInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUpdateManyWithoutPacienteNestedInput
   Exame?: Prisma.ExameUpdateManyWithoutPacienteNestedInput
 }
@@ -676,11 +960,20 @@ export type PacienteUncheckedUpdateWithoutConsultaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  rg?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sexo?: Prisma.StringFieldUpdateOperationsInput | string
+  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estado_civil?: Prisma.StringFieldUpdateOperationsInput | string
+  naturalidade?: Prisma.StringFieldUpdateOperationsInput | string
   telefone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  data_nascimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sexo?: Prisma.StringFieldUpdateOperationsInput | string
-  responsavel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contato_emergencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  cuidados_especiais?: Prisma.StringFieldUpdateOperationsInput | string
+  convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  numero_convenio?: Prisma.StringFieldUpdateOperationsInput | string
+  validade_convenio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endereco?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   Prontuario?: Prisma.ProntuarioUncheckedUpdateManyWithoutPacienteNestedInput
   Exame?: Prisma.ExameUncheckedUpdateManyWithoutPacienteNestedInput
 }
@@ -738,11 +1031,20 @@ export type PacienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   nome?: boolean
   cpf?: boolean
+  rg?: boolean
+  sexo?: boolean
+  data_nascimento?: boolean
+  estado_civil?: boolean
+  naturalidade?: boolean
   telefone?: boolean
   email?: boolean
-  data_nascimento?: boolean
-  sexo?: boolean
-  responsavel?: boolean
+  contato_emergencia?: boolean
+  alergias?: boolean
+  cuidados_especiais?: boolean
+  convenio?: boolean
+  numero_convenio?: boolean
+  validade_convenio?: boolean
+  endereco?: boolean
   Prontuario?: boolean | Prisma.Paciente$ProntuarioArgs<ExtArgs>
   Consulta?: boolean | Prisma.Paciente$ConsultaArgs<ExtArgs>
   Exame?: boolean | Prisma.Paciente$ExameArgs<ExtArgs>
@@ -753,36 +1055,63 @@ export type PacienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   nome?: boolean
   cpf?: boolean
+  rg?: boolean
+  sexo?: boolean
+  data_nascimento?: boolean
+  estado_civil?: boolean
+  naturalidade?: boolean
   telefone?: boolean
   email?: boolean
-  data_nascimento?: boolean
-  sexo?: boolean
-  responsavel?: boolean
+  contato_emergencia?: boolean
+  alergias?: boolean
+  cuidados_especiais?: boolean
+  convenio?: boolean
+  numero_convenio?: boolean
+  validade_convenio?: boolean
+  endereco?: boolean
 }, ExtArgs["result"]["paciente"]>
 
 export type PacienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nome?: boolean
   cpf?: boolean
+  rg?: boolean
+  sexo?: boolean
+  data_nascimento?: boolean
+  estado_civil?: boolean
+  naturalidade?: boolean
   telefone?: boolean
   email?: boolean
-  data_nascimento?: boolean
-  sexo?: boolean
-  responsavel?: boolean
+  contato_emergencia?: boolean
+  alergias?: boolean
+  cuidados_especiais?: boolean
+  convenio?: boolean
+  numero_convenio?: boolean
+  validade_convenio?: boolean
+  endereco?: boolean
 }, ExtArgs["result"]["paciente"]>
 
 export type PacienteSelectScalar = {
   id?: boolean
   nome?: boolean
   cpf?: boolean
+  rg?: boolean
+  sexo?: boolean
+  data_nascimento?: boolean
+  estado_civil?: boolean
+  naturalidade?: boolean
   telefone?: boolean
   email?: boolean
-  data_nascimento?: boolean
-  sexo?: boolean
-  responsavel?: boolean
+  contato_emergencia?: boolean
+  alergias?: boolean
+  cuidados_especiais?: boolean
+  convenio?: boolean
+  numero_convenio?: boolean
+  validade_convenio?: boolean
+  endereco?: boolean
 }
 
-export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "cpf" | "telefone" | "email" | "data_nascimento" | "sexo" | "responsavel", ExtArgs["result"]["paciente"]>
+export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "cpf" | "rg" | "sexo" | "data_nascimento" | "estado_civil" | "naturalidade" | "telefone" | "email" | "contato_emergencia" | "alergias" | "cuidados_especiais" | "convenio" | "numero_convenio" | "validade_convenio" | "endereco", ExtArgs["result"]["paciente"]>
 export type PacienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Prontuario?: boolean | Prisma.Paciente$ProntuarioArgs<ExtArgs>
   Consulta?: boolean | Prisma.Paciente$ConsultaArgs<ExtArgs>
@@ -803,11 +1132,20 @@ export type $PacientePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: number
     nome: string
     cpf: string
+    rg: string | null
+    sexo: string
+    data_nascimento: Date
+    estado_civil: string
+    naturalidade: string
     telefone: string
     email: string
-    data_nascimento: Date
-    sexo: string
-    responsavel: string | null
+    contato_emergencia: string | null
+    alergias: string
+    cuidados_especiais: string
+    convenio: string
+    numero_convenio: string
+    validade_convenio: Date
+    endereco: runtime.JsonValue
   }, ExtArgs["result"]["paciente"]>
   composites: {}
 }
@@ -1237,11 +1575,20 @@ export interface PacienteFieldRefs {
   readonly id: Prisma.FieldRef<"Paciente", 'Int'>
   readonly nome: Prisma.FieldRef<"Paciente", 'String'>
   readonly cpf: Prisma.FieldRef<"Paciente", 'String'>
+  readonly rg: Prisma.FieldRef<"Paciente", 'String'>
+  readonly sexo: Prisma.FieldRef<"Paciente", 'String'>
+  readonly data_nascimento: Prisma.FieldRef<"Paciente", 'DateTime'>
+  readonly estado_civil: Prisma.FieldRef<"Paciente", 'String'>
+  readonly naturalidade: Prisma.FieldRef<"Paciente", 'String'>
   readonly telefone: Prisma.FieldRef<"Paciente", 'String'>
   readonly email: Prisma.FieldRef<"Paciente", 'String'>
-  readonly data_nascimento: Prisma.FieldRef<"Paciente", 'DateTime'>
-  readonly sexo: Prisma.FieldRef<"Paciente", 'String'>
-  readonly responsavel: Prisma.FieldRef<"Paciente", 'String'>
+  readonly contato_emergencia: Prisma.FieldRef<"Paciente", 'String'>
+  readonly alergias: Prisma.FieldRef<"Paciente", 'String'>
+  readonly cuidados_especiais: Prisma.FieldRef<"Paciente", 'String'>
+  readonly convenio: Prisma.FieldRef<"Paciente", 'String'>
+  readonly numero_convenio: Prisma.FieldRef<"Paciente", 'String'>
+  readonly validade_convenio: Prisma.FieldRef<"Paciente", 'DateTime'>
+  readonly endereco: Prisma.FieldRef<"Paciente", 'Json'>
 }
     
 

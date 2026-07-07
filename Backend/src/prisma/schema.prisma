@@ -49,14 +49,17 @@ enum TypeToken {
 }
 
 model Exame {
-  id         Int       @id @default(autoincrement())
-  tipo_exame String
-  valor      Decimal
-  descricao  String
-  resultado  String
-  data_exame DateTime
-  paciente   Paciente? @relation(fields: [pacienteId], references: [id])
-  pacienteId Int?
+  id            Int      @id @default(autoincrement())
+  nome          String
+  data_exame    DateTime
+  horario       String
+  tipo_exame    String
+  laboratorio   String
+  url_documento String
+  resultado     String
+
+  paciente_id Int
+  paciente    Paciente @relation(fields: [paciente_id], references: [id])
 
   @@map("exame")
 }
@@ -74,29 +77,42 @@ model Prontuario {
 }
 
 model Consulta {
-  id                    Int      @id @default(autoincrement())
-  motivo                String
-  data_consulta         DateTime
-  observacoes           String
-  medico_responsavel_id Int
-  paciente_id           Int
-  paciente              Paciente @relation(fields: [paciente_id], references: [id])
+  id                 Int      @id @default(autoincrement())
+  motivo             String
+  data_consulta      DateTime
+  horario            String
+  descricao          String
+  medicamento        String
+  dosagem_precaucoes String
+  paciente_id        Int
+  paciente           Paciente @relation(fields: [paciente_id], references: [id])
 
   @@map("consulta")
 }
 
 model Paciente {
-  id              Int          @id @default(autoincrement())
-  nome            String
-  cpf             String
-  telefone        String
-  email           String
-  data_nascimento DateTime
-  sexo            String
-  responsavel     String?
-  Prontuario      Prontuario[]
-  Consulta        Consulta[]
-  Exame           Exame[]
+  id                 Int      @id @default(autoincrement())
+  nome               String
+  cpf                String   @unique
+  rg                 String?
+  sexo               String
+  data_nascimento    DateTime
+  estado_civil       String
+  naturalidade       String
+  telefone           String
+  email              String
+  contato_emergencia String?
+  alergias           String
+  cuidados_especiais String
+  convenio           String
+  numero_convenio    String
+  validade_convenio  DateTime
+
+  endereco Json
+
+  Prontuario Prontuario[]
+  Consulta   Consulta[]
+  Exame      Exame[]
 
   @@map("paciente")
 }

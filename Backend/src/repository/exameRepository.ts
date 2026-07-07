@@ -4,36 +4,45 @@ import { prisma } from "../prisma/prisma";
 
 export class ExameRepository {
 
-    constructor(private readonly prisma: PrismaClient) {
-        this.prisma = prisma
-    }
+    constructor(private readonly prisma: PrismaClient) { }
 
-    async listarTdsExames(pagina?: number, limite?: number) {
-        
-        const existePaginacao = pagina! && limite!
-        if(!existePaginacao) return await prisma.exame.findMany()
-        
-        const exames = await prisma.exame.findMany({
-            skip:(pagina-1) * limite,
-            take: limite
+    async listarTdsExames( pagina?: number, limite?: number, pacienteId?: number ) {
+
+        const where = pacienteId ? { paciente_id: pacienteId } : {}
+        const existePaginacao = pagina && limite
+
+        if (!existePaginacao) {
+            return await this.prisma.exame.findMany({
+                where,
+                include: {
+                    paciente: true
+                }
+            })
+        }
+
+        const exames = await this.prisma.exame.findMany({
+            where,
+            skip: (pagina - 1) * limite,
+            take: limite,
+            include: {
+                paciente: true
+            }
         })
 
-        const total = await prisma.exame.count()
+        const total = await this.prisma.exame.count({ where })
         const ttlPgs = Math.ceil(total / limite)
 
-        return {
-            exames,
-            total,
-            ttlPgs
-        }
+        return { exames, total, ttlPgs }
     }
 
     async buscarExameId(idExame: number) {
 
         const exame = await prisma.exame.findUnique({
-            where:{
-                id: idExame,
-                include: {paciente: true}
+            where: {
+                id: idExame
+            },
+            include: {
+                paciente: true
             }
         })
 
@@ -42,24 +51,27 @@ export class ExameRepository {
 
     async criarExame(ddsExame: Partial<Exame>) {
 
-        return await this.prisma.exame.create({
+        return await prisma.exame.create({
             data: {
-                tipo_exame: ddsExame.tipo_exame || "",
-                valor: ddsExame.valor || "",
-                descricao: ddsExame.descricao || "",
+                nome: ddsExame.nome || "",
                 data_exame: new Date(ddsExame.data_exame || ""),
-                resultado: ddsExame.resultado || ""
+                horario: ddsExame.horario || "",
+                tipo_exame: ddsExame.tipo_exame || "",
+                laboratorio: ddsExame.laboratorio || "",
+                url_documento: ddsExame.url_documento || "",
+                resultado: ddsExame.resultado || "",
+                paciente_id: ddsExame.paciente_id!
             }
         })
     }
 
-    async atualizarExame(idExame: number, atualizarDados: Omit<Exame, 'id'>){
+    async atualizarExame(idExame: number, atualizarDados: Omit<Exame, 'id'>) {
 
         const ddsExameAtualizados = await prisma.exame.update({
             data: {
                 ...atualizarDados,
                 data_exame: new Date(atualizarDados.data_exame)
-            }, where:{
+            }, where: {
                 id: idExame
             }
         })
@@ -70,12 +82,12 @@ export class ExameRepository {
     async deletarExame(idExame: number) {
 
         const exame = await prisma.exame.delete({
-            where:{
+            where: {
                 id: idExame
             }
         })
 
-        return exame 
+        return exame
     }
 }
 

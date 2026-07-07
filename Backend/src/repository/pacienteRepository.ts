@@ -9,14 +9,14 @@ export class PacienteRepository {
 
     async listarTdsPacientes(pagina?: number, limite?: number) {
         const existePaginacao = pagina! && limite!
-        if(!existePaginacao) {
+        if (!existePaginacao) {
             return await prisma.paciente.findMany({
                 include: { Prontuario: true, Consulta: true, Exame: true }
             })
         }
 
         const pacientes = await prisma.paciente.findMany({
-            skip:(pagina-1) * limite,
+            skip: (pagina - 1) * limite,
             take: limite,
             include: { Prontuario: true, Consulta: true, Exame: true }
         })
@@ -39,22 +39,32 @@ export class PacienteRepository {
             data: {
                 nome: ddsPaciente.nome || "",
                 cpf: ddsPaciente.cpf || "",
+                rg: ddsPaciente.rg || null,
+                sexo: ddsPaciente.sexo || "",
+                data_nascimento: new Date(ddsPaciente.data_nascimento!),
+                estado_civil: ddsPaciente.estado_civil || "",
+                naturalidade: ddsPaciente.naturalidade || "",
                 telefone: ddsPaciente.telefone || "",
                 email: ddsPaciente.email || "",
-                data_nascimento: new Date(ddsPaciente.data_nascimento || ""),
-                sexo: ddsPaciente.sexo || "",
-                responsavel: ddsPaciente.responsavel || null
+                contato_emergencia: ddsPaciente.contato_emergencia || null,
+                alergias: ddsPaciente.alergias || "",
+                cuidados_especiais: ddsPaciente.cuidados_especiais || "",
+                convenio: ddsPaciente.convenio || "",
+                numero_convenio: ddsPaciente.numero_convenio || "",
+                validade_convenio: new Date(ddsPaciente.validade_convenio!),
+                endereco: ddsPaciente.endereco || ""
             }
         })
     }
 
     async atualizarPaciente(idPaciente: number, atualizarDados: Omit<Paciente, 'id'>) {
         return await prisma.paciente.update({
+            where: { id: idPaciente },
             data: {
                 ...atualizarDados,
-                data_nascimento: new Date(atualizarDados.data_nascimento)
-            },
-            where: { id: idPaciente }
+                data_nascimento: new Date(atualizarDados.data_nascimento),
+                endereco: atualizarDados.endereco || ""
+            }
         })
     }
 

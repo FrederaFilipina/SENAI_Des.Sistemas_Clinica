@@ -7,35 +7,40 @@ export class ConsultaRepository {
         this.prisma = prisma
     }
 
-    async listarTdsConsultas(pagina?: number, limite?: number) {
-        
-        const existePaginacao = pagina! && limite!
-        if(!existePaginacao) {
+    async listarTdsConsultas(pagina?: number, limite?: number, pacienteId?: number) {
+
+        const where = pacienteId ? { paciente_id: pacienteId } : {};
+
+        const existePaginacao = pagina !== undefined && limite !== undefined;
+
+        if (!existePaginacao) {
             return await prisma.consulta.findMany({
-                include: { paciente: true }
-            })
+                where,
+                include: {
+                    paciente: true
+                }
+            });
         }
-        
+
         const consultas = await prisma.consulta.findMany({
-            skip:(pagina-1) * limite,
+            where,
+            skip: (pagina - 1) * limite,
             take: limite,
-            include: { paciente: true }
-        })
+            include: {
+                paciente: true
+            }
+        });
 
-        const total = await prisma.consulta.count()
-        const ttlPgs = Math.ceil(total / limite)
+        const total = await prisma.consulta.count({ where });
+        const ttlPgs = Math.ceil(total / limite);
 
-        return {
-            consultas,
-            total,
-            ttlPgs
-        }
+        return { consultas, total, ttlPgs }
     }
 
     async buscarConsultaId(idConsulta: number) {
 
         const consulta = await prisma.consulta.findUnique({
-            where:{
+            where: {
                 id: idConsulta
             },
             include: { paciente: true }
@@ -49,22 +54,24 @@ export class ConsultaRepository {
         return await this.prisma.consulta.create({
             data: {
                 motivo: ddsConsulta.motivo || "",
-                data_consulta: new Date(ddsConsulta.data_consulta || ""),
-                observacoes: ddsConsulta.observacoes || "",
-                medico_responsavel_id: ddsConsulta.medico_responsavel_id!,
-                paciente_id: ddsConsulta.paciente_id!
+                data_consulta: new Date(ddsConsulta.data_consulta || new Date()),
+                horario: ddsConsulta.horario || "",
+                descricao: ddsConsulta.descricao || "",
+                medicamento: ddsConsulta.medicamento || "",
+                dosagem_precaucoes: ddsConsulta.dosagem_precaucoes || "",
+                paciente_id: ddsConsulta.paciente_id!,
             }
         })
     }
 
-    async atualizarConsulta(idConsulta: number, atualizarDados: Omit<Consulta, 'id'>){
+    async atualizarConsulta(idConsulta: number, atualizarDados: Omit<Consulta, 'id'>) {
 
         const ddsConsultaAtualizados = await prisma.consulta.update({
             data: {
                 ...atualizarDados,
                 data_consulta: new Date(atualizarDados.data_consulta)
-            }, 
-            where:{
+            },
+            where: {
                 id: idConsulta
             }
         })
@@ -75,12 +82,12 @@ export class ConsultaRepository {
     async deletarConsulta(idConsulta: number) {
 
         const consulta = await prisma.consulta.delete({
-            where:{
+            where: {
                 id: idConsulta
             }
         })
 
-        return consulta 
+        return consulta
     }
 }
 
