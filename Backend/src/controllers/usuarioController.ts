@@ -111,31 +111,5 @@ export class UsuarioController {
             })
         }
     }
-
-    async buscarUsuarioEmail(req: Request, res: Response) {
-
-        try {
-
-            const {email} = req.params
-
-            const usuario = await this.service.buscarUsuarioEmail(email)
-
-            if (!usuario) {
-                return res.status(404).json({
-                    mensagem: "Usuário não encontrado"
-                })
-            }
-
-            return res.status(200).json(usuario)
-
-        } catch (error) {
-
-            return res.status(404).json({
-                error
-            })
-
-        }
-    }
-
 }
 export const usuarioController = new UsuarioController(usuarioService)

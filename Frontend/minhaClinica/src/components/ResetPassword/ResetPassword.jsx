@@ -42,46 +42,34 @@ function ResetPassword({ onSuccess }) {
 
             setIsSaving(true)
 
-            const response = await apiClient.get(
-                `/usuarios/email/${encodeURIComponent(email)}`
-            )
-
-            const usuario = response.data.find(
-                (u) =>
-                    u.email.toLowerCase() === email.toLowerCase()
-            )
-
-
-            if (!usuario) {
-                toast.error("E-mail não encontrado.")
-                return
-            }
-
-
-            await apiClient.put(`/usuarios/${usuario.id}`, {
+            await apiClient.put("/reset-password", {
+                email,
                 senha: novaSenha
             })
-
 
             toast.success("Senha alterada com sucesso!", {
                 autoClose: 2000,
                 hideProgressBar: true
             })
 
-
             resetForm()
 
-            if (onSuccess) onSuccess()
-
+            if (onSuccess) {
+                onSuccess()
+            }
 
         } catch (error) {
 
             console.error(error)
 
-            toast.error("Erro ao alterar a senha.", {
-                autoClose: 2000,
-                hideProgressBar: true
-            })
+            if (error.response?.status === 404) {
+                toast.error("E-mail não encontrado.")
+            } else {
+                toast.error("Erro ao alterar a senha.", {
+                    autoClose: 2000,
+                    hideProgressBar: true
+                })
+            }
 
         } finally {
 

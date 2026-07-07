@@ -66,6 +66,20 @@ export class AuthService {
         throw new Error("Credenciais inválidas")
 
     }
+
+    async resetPassword(email: string, novaSenha: string) {
+
+        const usuario = await this.repository.buscarUsuarioEmail(email)
+
+        if (!usuario) {
+            throw new Error("Usuário não encontrado.")
+        }
+
+        const senhaHash = await createHash(novaSenha)
+
+        return await this.repository.resetPassword(email, senhaHash)
+
+    }
 }
 
 export const authService = new AuthService(authRepository)

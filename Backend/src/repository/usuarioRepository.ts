@@ -40,10 +40,10 @@ export class UsuarioRepository {
     }
 
     async atualizarUsuario(
-    idUsuario: number,
-    atualizarDados: Partial<Usuario>
-) {
-            
+        idUsuario: number,
+        atualizarDados: Partial<Usuario>
+    ) {
+
         const ddsAtualizados = await prisma.usuario.update({
             data: {
                 ...atualizarDados
@@ -64,15 +64,5 @@ export class UsuarioRepository {
         })
         return usuario
     }
-
-    async buscarUsuarioEmail(email:string){
-
-    return await this.prisma.usuario.findUnique({
-        where:{
-            email
-        }
-    })
-
-}
-
+    
 } export const usuarioRepository = new UsuarioRepository(prisma)

@@ -28,9 +28,3 @@ usuarioRoute.delete('/usuarios/:id', async(req,res)=> {
 
     return usuarioController.deletarusuario(req,res)
 })
-
-usuarioRoute.get('/usuarios/email/:email', async(req,res)=> {
-
-    return usuarioController.buscarUsuarioEmail(req,res)
-
-})

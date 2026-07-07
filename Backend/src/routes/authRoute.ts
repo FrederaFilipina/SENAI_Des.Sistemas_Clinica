@@ -15,3 +15,7 @@ authRoute.post("/login", async (req, res) => {
 
     return authController.logar(req, res)
 })
+
+authRoute.put("/reset-password", async (req, res) => {
+    return authController.resetPassword(req, res)
+})
