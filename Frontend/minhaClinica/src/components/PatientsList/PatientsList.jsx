@@ -89,7 +89,7 @@ const PatientsList = () => {
     const totalPages = Math.ceil(filteredPatients.length / patientsPerPage)
 
     return (
-        <div className="bg-white shadow rounded-2xl p-6 mt-8">
+        <div className="bg-white shadow rounded-2xl p-6 mt-4">
 
             <h2 className="text-xl font-semibold text-cyan-800 mb-4">
                 Informações Rápidas de Pacientes
@@ -110,9 +110,9 @@ const PatientsList = () => {
                             currentPatients.map((patient) => (
                                 <li
                                     key={patient.id}
-                                    className="flex flex-col sm:flex-row sm:items-center justify-between py-4"
+                                    className="flex flex-col sm:flex-row sm:items-center justify-between py-2"
                                 >
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-2">
 
                                         <div className="bg-cyan-100 text-cyan-700 p-3 rounded-full">
                                             <FaUserAlt size={20} />

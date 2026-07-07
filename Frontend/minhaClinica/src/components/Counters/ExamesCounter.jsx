@@ -18,7 +18,7 @@ const ExamsCounter = () => {
     }, [])
 
     return (
-        <div className='bg-white shadow rounded-lg p-6 flex flex-col items-center w-60'>
+        <div className="bg-white shadow rounded-lg p-2 flex flex-col items-center w-full">
             <h2 className='text-xl font-bold flex items-center gap-2'>
                 <FaCalendarPlus className='text-blue-600' />{examCounter}
             </h2>

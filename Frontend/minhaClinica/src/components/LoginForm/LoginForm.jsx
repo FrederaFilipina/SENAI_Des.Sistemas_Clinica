@@ -6,6 +6,7 @@ import Modal from "../Modal/Modal"
 import RegisterUser from "../RegisterUser/RegisterUser"
 import { toast } from 'react-toastify'
 import ResetPassword from "../ResetPassword/ResetPassword"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 const LoginForm = () => {
     const [email, setEmail] = useState('')
@@ -14,6 +15,7 @@ const LoginForm = () => {
     const { login, user } = useAuth()
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isResetPasswordOpen, setIsResetPasswordOpen] = useState(false)
+    const [mostrarSenha, setMostrarSenha] = useState(false)
 
     useEffect(() => {
         if (user) {
@@ -83,10 +85,18 @@ const LoginForm = () => {
                         className='block text-sm font-medium text-white mb-1'> Senha
                     </label>
 
-                    <input type="password" id="senha" minLength={4} value={senha}
-                        required
-                        onChange={(e) => setSenha(e.target.value)}
-                        className='text-cyan-500 w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500' />
+                    <div className="relative">
+
+                        <input type={mostrarSenha ? "text" : "password"} id="senha" minLength={4}
+                        value={senha} required onChange={(e) => setSenha(e.target.value)}
+                        className='text-cyan-500 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500' />
+
+                        <button type="button" onClick={() => setMostrarSenha(!mostrarSenha)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-cyan-700 hover:text-cyan-500" title={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}> 
+                        {mostrarSenha ? <FaEye /> : < FaEyeSlash />}
+                        </button>
+
+                    </div>
 
                 </fieldset>
 
