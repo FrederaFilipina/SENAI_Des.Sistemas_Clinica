@@ -87,7 +87,7 @@ const MedicalRecordList = () => {
                                 </p>
 
                                 <Link
-                                    to={`/pacientes/${patient.id}`}
+                                    to={`/paciente/${patient.id}`}
                                     className="inline-block mt-2 text-cyan-700 font-semibold hover:underline"
                                 >
                                     Ver detalhes

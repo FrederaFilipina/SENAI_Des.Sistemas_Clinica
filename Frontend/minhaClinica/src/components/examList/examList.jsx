@@ -11,6 +11,12 @@ const ExamsList = () => {
     const start = (page - 1) * limite + 1
     const end = Math.min(page * limite, total)
 
+    const formatDate = (date) => {
+        if (!date) return "-"
+
+        return new Date(date).toISOString().split("T")[0].replace(/-/g, "/")
+    }
+
 
     useEffect(() => {
         const fethExames = async () => {
@@ -43,7 +49,6 @@ const ExamsList = () => {
                                         <th className="px-4 py-2 text-left">Tipo de Exame</th>
                                         <th className="px-4 py-2 text-left">Descrição</th>
                                         <th className="px-4 py-2 text-left">Data do Exame</th>
-                                        <th className="px-4 py-2 text-left">Valor</th>
                                         <th className="px-4 py-2 text-left">Resultado</th>
                                     </tr>
                                 </thead>
@@ -53,8 +58,7 @@ const ExamsList = () => {
                                             <td className="px-4 py-2">{exame.id}</td>
                                             <td className="px-4 py-2">{exame.tipo_exame}</td>
                                             <td className="px-4 py-2">{exame.descricao}</td>
-                                            <td className="px-4 py-2">{exame.data_exame}</td>
-                                            <td className="px-4 py-2 font-semibold text-cyan-700">R$ {exame.valor}</td>
+                                            <td className="px-4 py-2"> {formatDate(exame.data_exame)} </td>
                                             <td className="px-4 py-2 italic">{exame.resultado}</td>
                                         </tr>
                                     ))}

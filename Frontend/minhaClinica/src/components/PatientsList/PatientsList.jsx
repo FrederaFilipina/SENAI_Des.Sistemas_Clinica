@@ -147,7 +147,7 @@ const PatientsList = () => {
                                         </p>
 
                                         <Link
-                                            to={`/pacientes/${patient.id}`}
+                                            to={`/paciente/${patient.id}`}
                                             className="text-cyan-700 font-semibold hover:underline"
                                         >
                                             Ver detalhes
