@@ -89,131 +89,99 @@ const PatientsList = () => {
     const totalPages = Math.ceil(filteredPatients.length / patientsPerPage)
 
     return (
-        <div className="bg-white shadow rounded-2xl p-6 mt-4">
+        <div className="bg-white shadow-lg rounded-3xl p-3 mt-4">
 
-            <h2 className="text-xl font-semibold text-cyan-800 mb-4">
+            {/* Título */}
+            <h2 className="text-2xl font-bold text-cyan-900 mb-6 border-b border-gray-200 pb-2">
                 Informações Rápidas de Pacientes
             </h2>
 
-            <SearchBar
-                value={searchTerm}
-                onChange={setSearchTerm}
-                label="Encontre o paciente"
-                placeholder="Digite o nome, e-mail, telefone ou convênio"
-            />
+            {/* Barra de busca */}
+            <SearchBar value={searchTerm} onChange={setSearchTerm} label="Encontre o paciente" placeholder="Digite nome, e-mail, telefone ou convênio" />
 
-            {
-                currentPatients.length > 0 ? (
-                    <ul className="divide-y divide-gray-200">
-
-                        {
-                            currentPatients.map((patient) => (
-                                <li
-                                    key={patient.id}
-                                    className="flex flex-col sm:flex-row sm:items-center justify-between py-2"
-                                >
-                                    <div className="flex items-center gap-2">
-
-                                        <div className="bg-cyan-100 text-cyan-700 p-3 rounded-full">
-                                            <FaUserAlt size={20} />
-                                        </div>
-
-                                        <div>
-                                            <p className="font-semibold text-gray-800">
-                                                {patient.nome}
-                                            </p>
-
-                                            <p className="text-sm text-gray-600">
-                                                {patient.email}
-                                            </p>
-
-                                            <p className="text-sm text-gray-600">
-                                                {patient.telefone}
-                                            </p>
-                                        </div>
-
-                                    </div>
-
-                                    <div className="text-sm text-gray-600 mt-2 sm:mt-0 text-right">
-
-                                        <p>
-                                            <strong>Idade: </strong>
-                                            {ages[patient.id] || "-"} anos
-                                        </p>
-
-                                        <p>
-                                            <strong>Plano: </strong>
-                                            {patient.convenio || "-"}
-                                        </p>
-
-                                        <Link
-                                            to={`/paciente/${patient.id}`}
-                                            className="text-cyan-700 font-semibold hover:underline"
-                                        >
-                                            Ver detalhes
-                                        </Link>
-
-                                    </div>
-
-                                </li>
-                            ))
-                        }
-
-                    </ul>
-                ) : (
-                    <p className="text-gray-500 text-center py-6">
-                        Nenhum paciente encontrado
-                    </p>
-                )
-            }
-
-            {
-                totalPages > 1 && (
-                    <div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
-
-                        <button
-                            onClick={() =>
-                                setCurrentPage((prev) => Math.max(prev - 1, 1))
-                            }
-                            disabled={currentPage === 1}
-                            className="px-4 py-2 bg-cyan-700 text-white rounded hover:bg-cyan-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            {/* Lista de pacientes */}
+            {currentPatients.length > 0 ? (
+                <ul className="divide-y divide-gray-200 mt-4">
+                    {currentPatients.map((patient) => (
+                        <li
+                            key={patient.id}
+                            className="flex flex-col sm:flex-row sm:items-center justify-between py-4 hover:bg-gray-50 rounded-lg px-2 transition h-19"
                         >
-                            Anterior
-                        </button>
+                            {/* Dados principais */}
+                            <div className="flex items-center gap-3">
+                                <div className="bg-cyan-100 text-cyan-700 p-3 rounded-full shadow-sm">
+                                    <FaUserAlt size={22} />
+                                </div>
+                                <div>
+                                    <p className="font-semibold text-gray-800">{patient.nome}</p>
+                                    <p className="text-sm text-gray-600">{patient.email}</p>
+                                    <p className="text-sm text-gray-600">{patient.telefone}</p>
+                                </div>
+                            </div>
 
-                        {
-                            Array.from({ length: totalPages }, (_, index) => (
-                                <button
-                                    key={index + 1}
-                                    onClick={() => setCurrentPage(index + 1)}
-                                    className={`px-4 py-2 rounded transition ${
-                                        currentPage === index + 1
-                                            ? "bg-cyan-900 text-white"
-                                            : "bg-gray-200 hover:bg-gray-300"
-                                    }`}
+                            {/* Dados adicionais */}
+                            <div className="text-sm text-gray-700 mt-3 sm:mt-0 text-right space-y-1">
+                                <p>
+                                    <strong className="text-cyan-800">Idade:</strong>{" "}
+                                    {ages[patient.id] || "-"} anos
+                                </p>
+                                <p>
+                                    <strong className="text-cyan-800">Plano:</strong>{" "}
+                                    {patient.convenio || "-"}
+                                </p>
+                                <Link
+                                    to={`/paciente/${patient.id}`}
+                                    className="text-cyan-700 font-semibold hover:underline"
                                 >
-                                    {index + 1}
-                                </button>
-                            ))
-                        }
+                                    Ver detalhes
+                                </Link>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className="text-gray-500 text-center py-8">
+                    Nenhum paciente encontrado
+                </p>
+            )}
 
+            {/* Paginação */}
+            {totalPages > 1 && (
+                <div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
+                    <button
+                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                        className="px-4 py-2 bg-cyan-700 text-white rounded-lg hover:bg-cyan-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                    >
+                        Anterior
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, index) => (
                         <button
-                            onClick={() =>
-                                setCurrentPage((prev) =>
-                                    Math.min(prev + 1, totalPages)
-                                )
-                            }
-                            disabled={currentPage === totalPages}
-                            className="px-4 py-2 bg-cyan-700 text-white rounded hover:bg-cyan-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                            key={index + 1}
+                            onClick={() => setCurrentPage(index + 1)}
+                            className={`px-4 py-2 rounded-lg transition ${currentPage === index + 1
+                                    ? "bg-cyan-900 text-white"
+                                    : "bg-gray-200 hover:bg-gray-300"
+                                }`}
                         >
-                            Próxima
+                            {index + 1}
                         </button>
+                    ))}
 
-                    </div>
-                )
-            }
-
+                    <button
+                        onClick={() =>
+                            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                        }
+                        disabled={currentPage === totalPages}
+                        className="px-4 py-2 bg-cyan-700 text-white rounded-lg hover:bg-cyan-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                    >
+                        Próxima
+                    </button>
+                </div>
+            )}
         </div>
+
     )
 }
 

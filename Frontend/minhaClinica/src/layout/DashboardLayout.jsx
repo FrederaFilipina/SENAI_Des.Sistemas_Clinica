@@ -2,44 +2,45 @@ import { useAuth } from "../context/AuthContext"
 import SideMenu from "../components/SideMenu/SideMenu"
 import { Outlet } from "react-router"
 
-
 const DashboardLayout = () => {
-    const { user, logout } = useAuth()
+  const { user, logout } = useAuth()
 
-    return (
-        <div className="flex min-h-screen bg-gray-100">
+  return (
+    <div className="flex h-screen bg-gray-100"> {/* altura total da tela */}
 
-            <SideMenu />
+      <SideMenu />
 
-            <main className="flex-1 flex flex-col">
+      <main className="flex-1 flex flex-col h-screen"> {/* força o main a ter mesma altura */}
+        
+        {/* Cabeçalho */}
+        <header className="flex justify-between items-center bg-white px-6 py-4 shadow-md border-b border-gray-200">
+          <h1 className="text-2xl font-bold text-cyan-800 tracking-wide">
+            Painel do Sistema
+          </h1>
 
-                <header className="flex justify-between items-center bg-white p-4 shadow">
+          {user && (
+            <div className="flex items-center gap-6">
+              <span className="text-gray-700 font-medium">
+                Bem-vindo, <span className="text-cyan-700">{user.email}</span>
+              </span>
 
-                    <h1 className="text-xl font-bold text-cyan-800">Painel do Sistema</h1>
+              <button
+                onClick={logout}
+                className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-colors shadow-sm"
+              >
+                Sair
+              </button>
+            </div>
+          )}
+        </header>
 
-                    { user && (
-                            <div className="flex items-center gap-4">
-
-                                <span className="text-gray-700">
-                                    Bem Vindo, {user.email}
-                                </span>
-
-                                <button onClick={logout}
-                                className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">
-                                    Sair
-                                </button>
-
-                            </div>
-                        )}
-                </header>
-
-                <section className="flex-1 p-6 overflow-y-auto">
-                    <Outlet />
-                </section>
-
-            </main>
-        </div>
-    )
+        {/* Conteúdo principal */}
+        <section className="flex-1 p-8  bg-gray-50">
+          <Outlet />
+        </section>
+      </main>
+    </div>
+  )
 }
 
 export default DashboardLayout

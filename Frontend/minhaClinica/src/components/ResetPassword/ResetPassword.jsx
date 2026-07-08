@@ -81,131 +81,94 @@ function ResetPassword({ onSuccess }) {
 
     return (
 
-        <div className="w-full max-w-md p-6 bg-cyan-900 rounded-xl">
+        <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl">
 
-            <h2 className="text-cyan-100 text-2xl font-bold mb-6 text-center">
+            <h2 className="text-2xl font-bold text-center text-cyan-900 mb-6">
                 Alterar Senha
             </h2>
 
+            <form onSubmit={handleSubmit} className="space-y-5">
 
-            <form onSubmit={handleSubmit}>
-
-
-                <div className="flex flex-col justify-evenly gap-2">
-
-
-                    <fieldset>
-
-                        <label
-                            htmlFor="email"
-                            className="block text-white text-sm font-medium mb-1"
-                        >
-                            E-mail:
-                        </label>
-
-
-                        <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            required
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full p-2 rounded-lg text-white font-semibold border border-white focus:border-0 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                        />
-
-                    </fieldset>
-
-
-
-                    <fieldset>
-
-                        <label
-                            htmlFor="novaSenha"
-                            className="block text-white text-sm font-medium mb-1"
-                        >
-                            Nova Senha:
-                        </label>
-
-
-                        <input
-                            type="password"
-                            id="novaSenha"
-                            minLength={4}
-                            value={novaSenha}
-                            required
-                            onChange={(e) => {
-                                setNovaSenha(e.target.value)
-                                setIsSenhaMatch(true)
-                            }}
-                            className="w-full p-2 rounded-lg text-white font-semibold border border-white focus:border-0 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                        />
-
-                    </fieldset>
-
-
-
-                    <fieldset>
-
-                        <label
-                            htmlFor="confirmarSenha"
-                            className="block text-white text-sm font-medium mb-1"
-                        >
-                            Confirmar Nova Senha:
-                        </label>
-
-
-                        <input
-                            type="password"
-                            id="confirmarSenha"
-                            minLength={4}
-                            value={confirmarSenha}
-                            required
-                            onChange={(e) => {
-                                setConfirmarSenha(e.target.value)
-                                setIsSenhaMatch(true)
-                            }}
-                            className="w-full p-2 rounded-lg text-white font-semibold border border-white focus:border-0 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                        />
-
-
-                        {!isSenhaMatch && (
-                            <p className="text-red-500 text-sm mt-1">
-                                As senhas não correspondem
-                            </p>
-                        )}
-
-
-                    </fieldset>
-
-
-                </div>
-
-
-
-                <div>
-
-                    <button
-                        type="submit"
-                        disabled={isSaving}
-                        className={`w-full p-2 rounded-lg font-bold text-white mt-4 ${isSaving
-                            ? "bg-cyan-300 cursor-not-allowed"
-                            : "bg-cyan-700 hover:bg-cyan-500 cursor-pointer"
-                            } transition-colors`}
+                <fieldset>
+                    <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-cyan-800 mb-1"
                     >
+                        E-mail
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        required
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-3 rounded-lg border border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-600 text-gray-800"
+                        placeholder="seuemail@exemplo.com"
+                    />
+                </fieldset>
 
-                        {isSaving
-                            ? "Alterando..."
-                            : "Alterar Senha"}
+                <fieldset>
+                    <label
+                        htmlFor="novaSenha"
+                        className="block text-sm font-medium text-cyan-800 mb-1"
+                    >
+                        Nova Senha
+                    </label>
+                    <input
+                        type="password"
+                        id="novaSenha"
+                        minLength={4}
+                        value={novaSenha}
+                        required
+                        onChange={(e) => {
+                            setNovaSenha(e.target.value)
+                            setIsSenhaMatch(true)
+                        }}
+                        className="w-full p-3 rounded-lg border border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-600 text-gray-800"
+                        placeholder="Digite sua nova senha"
+                    />
+                </fieldset>
 
-                    </button>
+                <fieldset>
+                    <label
+                        htmlFor="confirmarSenha"
+                        className="block text-sm font-medium text-cyan-800 mb-1"
+                    >
+                        Confirmar Nova Senha
+                    </label>
+                    <input
+                        type="password"
+                        id="confirmarSenha"
+                        minLength={4}
+                        value={confirmarSenha}
+                        required
+                        onChange={(e) => {
+                            setConfirmarSenha(e.target.value)
+                            setIsSenhaMatch(true)
+                        }}
+                        className="w-full p-3 rounded-lg border border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-600 text-gray-800"
+                        placeholder="Repita sua nova senha"
+                    />
+                    {!isSenhaMatch && (
+                        <p className="text-red-500 text-sm mt-1">
+                            As senhas não correspondem
+                        </p>
+                    )}
+                </fieldset>
 
-                </div>
-
-
+                <button
+                    type="submit"
+                    disabled={isSaving}
+                    className={`w-full py-3 rounded-lg font-bold text-white transition-colors shadow-md ${isSaving
+                            ? "bg-cyan-300 cursor-not-allowed"
+                            : "bg-cyan-700 hover:bg-cyan-900 cursor-pointer"
+                        }`}
+                >
+                    {isSaving ? "Alterando..." : "Alterar Senha"}
+                </button>
             </form>
-
-
         </div>
+
 
     )
 }
