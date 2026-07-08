@@ -7,6 +7,7 @@ import { exameRouter } from './routes/exameRoute'
 import { consultaRouter } from './routes/consultaRoute'
 import { env } from './env'   // importa o env centralizado
 import { pacienteRouter } from './routes/pacienteRoute'
+import { medicamentoRouter } from './routes/medicamentoRoute'
 
 
 const app = express()
@@ -31,7 +32,9 @@ app.use(usuarioRoute)
 app.use(exameRouter)
 app.use(consultaRouter)
 app.use(pacienteRouter)
+app.use(medicamentoRouter)
 
 app.listen(port, () => {
   console.log(`༼ つ ◕_◕ ༽つ Servidor da Clinica Fullstack está ativo na porta ${port}`)
 })
+

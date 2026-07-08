@@ -15,6 +15,7 @@ import ConsultationForm from './components/ConsultationForm/ConsultationForm.jsx
 import ExamsForm from './components/ExamForm/ExamForm.jsx';
 import PatientDetails from './components/PatientsDetails/PatientsDetails.jsx';
 import ExamsList from './components/examList/examList.jsx';
+import Medicamentos from './components/Medicamentos/Medicamentos.jsx';
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       {path: '/consultas', element: <ConsultationForm /> },
       {path: '/exames', element: <ExamsForm />},
       { path: "/exames-list", element: <ExamsList /> },
+      {path: '/medicamentos', element: <Medicamentos />},
       {path: '/pacientes/:id', element: <PatientDetails />}
     ]
   }

@@ -1,9 +1,10 @@
 import { Link, useNavigate, NavLink } from 'react-router'
 import { MdDashboard, MdExitToApp, MdMenu, MdClose } from 'react-icons/md'
-import { FaUserPlus, FaListAlt, FaCalendarCheck } from 'react-icons/fa'
+import { FaUserPlus, FaListAlt, FaCalendarCheck, FaPills } from 'react-icons/fa'
 import { LiaClipboardListSolid } from "react-icons/lia"
 import { useAuth } from '../../context/AuthContext'
 import { useState } from 'react'
+
 
 
 
@@ -87,6 +88,14 @@ const SideMenu = () => {
                             className={({ isActive }) => `flex gap-2 hover:text-cyan-300 ${isActive ? "text-cyan-300" : "text-white"}`}>
                             <LiaClipboardListSolid size={20}/>
                             {!isCollapsed && <span>Lista de exames</span>}
+                        </NavLink>
+
+                    </li>
+                    <li>
+                        <NavLink to="/medicamentos"
+                            className={({ isActive }) => `flex gap-2 hover:text-cyan-300 ${isActive ? "text-cyan-300" : "text-white"}`}>
+                            <FaPills size={20}/>
+                            {!isCollapsed && <span>Medicamentos</span>}
                         </NavLink>
 
                     </li>

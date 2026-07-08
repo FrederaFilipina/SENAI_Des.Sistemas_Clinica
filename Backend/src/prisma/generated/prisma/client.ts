@@ -71,3 +71,8 @@ export type Consulta = Prisma.ConsultaModel
  * 
  */
 export type Paciente = Prisma.PacienteModel
+/**
+ * Model Medicamento
+ * 
+ */
+export type Medicamento = Prisma.MedicamentoModel

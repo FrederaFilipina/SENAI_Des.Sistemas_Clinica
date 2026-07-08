@@ -116,3 +116,14 @@ model Paciente {
 
   @@map("paciente")
 }
+
+model Medicamento {
+  id              Int      @id @default(autoincrement())
+  nome            String
+  marca           String
+  fabricante      String
+  data_vencimento DateTime
+
+  @@map("medicamento")
+}
+
